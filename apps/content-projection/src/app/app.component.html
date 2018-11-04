@@ -1,0 +1,15 @@
+<div>
+  <angpro-auth-form (submitted)="createUser($event)">
+    <h3> Create account </h3>
+    <button type="submit">
+      Join us
+    </button>
+  </angpro-auth-form>
+  <angpro-auth-form (submitted)="loginUser($event)">
+    <h3> Login </h3>
+    <angpro-auth-remember (checked)="rememberChange($event)"></angpro-auth-remember>
+    <button type="submit">
+      Submit
+    </button>
+  </angpro-auth-form>
+</div>

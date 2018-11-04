@@ -7,5 +7,12 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "content-projection": {
+      "tags": []
+    },
+    "content-projection-e2e": {
+      "tags": []
+    }
+  }
 }
