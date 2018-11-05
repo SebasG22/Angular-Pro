@@ -1,4 +1,4 @@
-import { Component, Output, ViewChild, ViewChildren, AfterViewInit, EventEmitter, ContentChild, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import { Component, Output, ViewChild, ViewChildren, AfterViewInit, EventEmitter, ContentChild, ContentChildren, QueryList, AfterContentInit, ChangeDetectorRef, ElementRef } from '@angular/core';
 
 import { AuthRememberComponent } from './auth.remember.component';
 import { AuthMessageComponent } from './auth-message.component';
@@ -7,7 +7,11 @@ import { User } from './auth-form.interface';
 
 @Component({
   selector: 'angpro-auth-form',
-  templateUrl: './auth-form.component.html'
+  templateUrl: './auth-form.component.html',
+  styles: [`
+  .email{
+    border-color: #9f72e6
+  }`]
 })
 export class AuthFormComponent implements AfterContentInit, AfterViewInit {
 
@@ -21,10 +25,15 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
 
   // @ViewChild(AuthMessageComponent) message: AuthMessageComponent;
 
+  @ViewChild('email') email: ElementRef;
+
   @ViewChildren(AuthMessageComponent) message: QueryList<AuthMessageComponent>;
 
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
 
+  constructor(private cd: ChangeDetectorRef) {
+
+  }
   onSubmit(value: User) {
     this.submitted.emit(value);
   }
@@ -48,13 +57,18 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
      ViewChild works from afterContentInit
    */
     if (this.message) {
-      setTimeout(() => {
-        this.message.forEach((item) => {
-          item.days = 30;
-        })
+      // setTimeout(() => {
+      this.message.forEach((item) => {
+        item.days = 30;
+        // })
+        this.cd.detectChanges();
       })
     }
     console.log(this.message);
+
+    this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
+    this.email.nativeElement.classList.add('email');
+    this.email.nativeElement.focus();
   }
 
 }
