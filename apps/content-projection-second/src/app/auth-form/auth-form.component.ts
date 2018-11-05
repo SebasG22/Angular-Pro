@@ -1,4 +1,4 @@
-import { Component, Output, ViewChild, ViewChildren, AfterViewInit, EventEmitter, ContentChild, ContentChildren, QueryList, AfterContentInit, ChangeDetectorRef, ElementRef } from '@angular/core';
+import { Component, Output, ViewChild, ViewChildren, AfterViewInit, EventEmitter, ContentChild, ContentChildren, QueryList, AfterContentInit, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
 
 import { AuthRememberComponent } from './auth.remember.component';
 import { AuthMessageComponent } from './auth-message.component';
@@ -31,7 +31,10 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
 
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
 
-  constructor(private cd: ChangeDetectorRef) {
+  constructor(
+    private cd: ChangeDetectorRef,
+    private render: Renderer2
+  ) {
 
   }
   onSubmit(value: User) {
@@ -66,9 +69,14 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
     }
     console.log(this.message);
 
-    this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
-    this.email.nativeElement.classList.add('email');
-    this.email.nativeElement.focus();
+    // this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
+    // this.email.nativeElement.classList.add('email');
+    // this.email.nativeElement.focus();
+
+    // This is better to use on environments that doesn't have access to the DOM
+    this.render.setAttribute(this.email.nativeElement, 'placeholder', 'Enter your email address');
+    this.render.setAttribute(this.email.nativeElement, 'class', 'email');
+    this.render.selectRootElement("input[type='email']").focus();
   }
 
 }
