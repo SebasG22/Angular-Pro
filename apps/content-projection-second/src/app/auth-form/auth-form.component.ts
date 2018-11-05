@@ -1,4 +1,4 @@
-import { Component, Output, ViewChild, AfterViewInit, EventEmitter, ContentChild, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import { Component, Output, ViewChild, ViewChildren, AfterViewInit, EventEmitter, ContentChild, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 
 import { AuthRememberComponent } from './auth.remember.component';
 import { AuthMessageComponent } from './auth-message.component';
@@ -19,7 +19,9 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
   // Multiple component
   @ContentChildren(AuthRememberComponent) remember: QueryList<AuthRememberComponent>;
 
-  @ViewChild(AuthMessageComponent) message: AuthMessageComponent;
+  // @ViewChild(AuthMessageComponent) message: AuthMessageComponent;
+
+  @ViewChildren(AuthMessageComponent) message: QueryList<AuthMessageComponent>;
 
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
 
@@ -28,9 +30,9 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
   }
 
   ngAfterContentInit() {
-    if (this.message) {
-      this.message.days = 30;
-    }
+    // if (this.message) {
+    //   this.message.days = 30;
+    // }
     if (this.remember) {
       this.remember.forEach((item) => {
         item.checked.subscribe((value: boolean) => {
@@ -41,6 +43,17 @@ export class AuthFormComponent implements AfterContentInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    /* 
+     ViewChildren only works here on afterViewInit
+     ViewChild works from afterContentInit
+   */
+    if (this.message) {
+      setTimeout(() => {
+        this.message.forEach((item) => {
+          item.days = 30;
+        })
+      })
+    }
     console.log(this.message);
   }
 
