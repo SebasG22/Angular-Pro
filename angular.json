@@ -124,6 +124,129 @@
           }
         }
       }
+    },
+    "content-projection-second": {
+      "root": "apps/content-projection-second/",
+      "sourceRoot": "apps/content-projection-second/src",
+      "projectType": "application",
+      "prefix": "angpro",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/content-projection-second",
+            "index": "apps/content-projection-second/src/index.html",
+            "main": "apps/content-projection-second/src/main.ts",
+            "polyfills": "apps/content-projection-second/src/polyfills.ts",
+            "tsConfig": "apps/content-projection-second/tsconfig.app.json",
+            "assets": [
+              "apps/content-projection-second/src/favicon.ico",
+              "apps/content-projection-second/src/assets"
+            ],
+            "styles": [
+              "apps/content-projection-second/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/content-projection-second/src/environments/environment.ts",
+                  "with": "apps/content-projection-second/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "content-projection-second:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "content-projection-second:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "content-projection-second:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/content-projection-second/tsconfig.app.json",
+              "apps/content-projection-second/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/content-projection-second/jest.config.js",
+            "tsConfig": "apps/content-projection-second/tsconfig.spec.json",
+            "setupFile": "apps/content-projection-second/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "content-projection-second-e2e": {
+      "root": "apps/content-projection-second-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/content-projection-second-e2e/cypress.json",
+            "tsConfig": "apps/content-projection-second-e2e/tsconfig.e2e.json",
+            "devServerTarget": "content-projection-second:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "content-projection-second:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -13,6 +13,12 @@
     },
     "content-projection-e2e": {
       "tags": []
+    },
+    "content-projection-second": {
+      "tags": []
+    },
+    "content-projection-second-e2e": {
+      "tags": []
     }
   }
 }
