@@ -21,6 +21,7 @@ export class AppComponent implements AfterContentInit {
     const component = this.entry.createComponent(authFormFactory);
     // To modify a property use the instance, there's not @Input on dynamic components
     component.instance.title = 'Create account';
+    component.instance.submitted.subscribe(this.loginUser)
   }
 
   loginUser(user: User) {
