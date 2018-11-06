@@ -19,6 +19,8 @@ export class AppComponent implements AfterContentInit {
   ngAfterContentInit(){
     const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
     const component = this.entry.createComponent(authFormFactory);
+    // To modify a property use the instance, there's not @Input on dynamic components
+    component.instance.title = 'Create account';
   }
 
   loginUser(user: User) {
