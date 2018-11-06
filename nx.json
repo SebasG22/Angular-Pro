@@ -19,6 +19,12 @@
     },
     "content-projection-second-e2e": {
       "tags": []
+    },
+    "dynamic-components": {
+      "tags": []
+    },
+    "dynamic-components-e2e": {
+      "tags": []
     }
   }
 }

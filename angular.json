@@ -247,6 +247,128 @@
           }
         }
       }
+    },
+    "dynamic-components": {
+      "root": "apps/dynamic-components/",
+      "sourceRoot": "apps/dynamic-components/src",
+      "projectType": "application",
+      "prefix": "angpro",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/dynamic-components",
+            "index": "apps/dynamic-components/src/index.html",
+            "main": "apps/dynamic-components/src/main.ts",
+            "polyfills": "apps/dynamic-components/src/polyfills.ts",
+            "tsConfig": "apps/dynamic-components/tsconfig.app.json",
+            "assets": [
+              "apps/dynamic-components/src/favicon.ico",
+              "apps/dynamic-components/src/assets"
+            ],
+            "styles": [
+              "apps/dynamic-components/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/dynamic-components/src/environments/environment.ts",
+                  "with": "apps/dynamic-components/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "dynamic-components:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "dynamic-components:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "dynamic-components:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/dynamic-components/tsconfig.app.json",
+              "apps/dynamic-components/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/dynamic-components/jest.config.js",
+            "tsConfig": "apps/dynamic-components/tsconfig.spec.json",
+            "setupFile": "apps/dynamic-components/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "dynamic-components-e2e": {
+      "root": "apps/dynamic-components-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/dynamic-components-e2e/protractor.conf.js",
+            "devServerTarget": "dynamic-components:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dynamic-components:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/dynamic-components-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
