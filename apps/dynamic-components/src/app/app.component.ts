@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef, ComponentFactoryResolver, AfterContentInit, ComponentRef } from '@angular/core';
 
 import { AuthFormComponent } from '../app/auth-form/auth-form.component';
 import { User } from './auth-form/auth-form.interface';
@@ -10,18 +10,24 @@ import { User } from './auth-form/auth-form.interface';
 })
 export class AppComponent implements AfterContentInit {
 
+  component: ComponentRef<AuthFormComponent>;
+
   @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
 
   constructor(
     private resolver: ComponentFactoryResolver
-  ){}
+  ) { }
 
-  ngAfterContentInit(){
+  ngAfterContentInit() {
     const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-    const component = this.entry.createComponent(authFormFactory);
+    this.component = this.entry.createComponent(authFormFactory);
     // To modify a property use the instance, there's not @Input on dynamic components
-    component.instance.title = 'Create account';
-    component.instance.submitted.subscribe(this.loginUser)
+    this.component.instance.title = 'Create account';
+    this.component.instance.submitted.subscribe(this.loginUser)
+  }
+
+  destroyComponent() {
+    this.component.destroy();
   }
 
   loginUser(user: User) {
