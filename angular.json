@@ -369,6 +369,128 @@
           }
         }
       }
+    },
+    "view-encapsulation": {
+      "root": "apps/view-encapsulation/",
+      "sourceRoot": "apps/view-encapsulation/src",
+      "projectType": "application",
+      "prefix": "angpro",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/view-encapsulation",
+            "index": "apps/view-encapsulation/src/index.html",
+            "main": "apps/view-encapsulation/src/main.ts",
+            "polyfills": "apps/view-encapsulation/src/polyfills.ts",
+            "tsConfig": "apps/view-encapsulation/tsconfig.app.json",
+            "assets": [
+              "apps/view-encapsulation/src/favicon.ico",
+              "apps/view-encapsulation/src/assets"
+            ],
+            "styles": [
+              "apps/view-encapsulation/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/view-encapsulation/src/environments/environment.ts",
+                  "with": "apps/view-encapsulation/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "view-encapsulation:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "view-encapsulation:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "view-encapsulation:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/view-encapsulation/tsconfig.app.json",
+              "apps/view-encapsulation/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/view-encapsulation/jest.config.js",
+            "tsConfig": "apps/view-encapsulation/tsconfig.spec.json",
+            "setupFile": "apps/view-encapsulation/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "view-encapsulation-e2e": {
+      "root": "apps/view-encapsulation-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/view-encapsulation-e2e/protractor.conf.js",
+            "devServerTarget": "view-encapsulation:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "view-encapsulation:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/view-encapsulation-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

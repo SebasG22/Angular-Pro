@@ -25,6 +25,12 @@
     },
     "dynamic-components-e2e": {
       "tags": []
+    },
+    "view-encapsulation": {
+      "tags": []
+    },
+    "view-encapsulation-e2e": {
+      "tags": []
     }
   }
 }
