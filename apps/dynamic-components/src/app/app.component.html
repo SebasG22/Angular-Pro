@@ -1,8 +1,8 @@
 <div>
     <ng-container
-    [ngTemplateOutlet]="tmpl">
+    [ngTemplateOutlet]="tmpl" [ngTemplateOutletContext]="ctx">
     </ng-container>
-    <ng-template #tmpl>
-        Todd Motto : Bogota, COL
+    <ng-template #tmpl let-name let-location="location">
+        {{ name }} : {{ location }}
     </ng-template>
 </div>
