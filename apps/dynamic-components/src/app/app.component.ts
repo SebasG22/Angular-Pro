@@ -20,7 +20,8 @@ export class AppComponent implements AfterContentInit {
 
   ngAfterContentInit() {
     const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-    this.component = this.entry.createComponent(authFormFactory);
+    this.entry.createComponent(authFormFactory);
+    this.component = this.entry.createComponent(authFormFactory, 0);
     // To modify a property use the instance, there's not @Input on dynamic components
     this.component.instance.title = 'Create account';
     this.component.instance.submitted.subscribe(this.loginUser)
@@ -28,6 +29,10 @@ export class AppComponent implements AfterContentInit {
 
   destroyComponent() {
     this.component.destroy();
+  }
+
+  moveComponent() {
+    this.entry.move(this.component.hostView, 1)
   }
 
   loginUser(user: User) {
