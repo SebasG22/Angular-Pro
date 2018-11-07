@@ -1,6 +1,6 @@
 <div>
     <div #entry class="entry"></div>
-    <ng-template #tmpl>
-        Sebastian Guevara : Bogota, COL
+    <ng-template #tmpl let-foo let-location="location">
+        {{ foo }} : {{ location }}
     </ng-template>
 </div>
