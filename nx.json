@@ -31,6 +31,18 @@
     },
     "view-encapsulation-e2e": {
       "tags": []
+    },
+    "change-detection": {
+      "tags": []
+    },
+    "change-detection-e2e": {
+      "tags": []
+    },
+    "custom-directives": {
+      "tags": []
+    },
+    "custom-directives-e2e": {
+      "tags": []
     }
   }
 }
