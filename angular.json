@@ -737,6 +737,129 @@
           }
         }
       }
+    },
+    "custom-directives-second": {
+      "root": "apps/custom-directives-second/",
+      "sourceRoot": "apps/custom-directives-second/src",
+      "projectType": "application",
+      "prefix": "angpro",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/custom-directives-second",
+            "index": "apps/custom-directives-second/src/index.html",
+            "main": "apps/custom-directives-second/src/main.ts",
+            "polyfills": "apps/custom-directives-second/src/polyfills.ts",
+            "tsConfig": "apps/custom-directives-second/tsconfig.app.json",
+            "assets": [
+              "apps/custom-directives-second/src/favicon.ico",
+              "apps/custom-directives-second/src/assets"
+            ],
+            "styles": [
+              "apps/custom-directives-second/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/custom-directives-second/src/environments/environment.ts",
+                  "with": "apps/custom-directives-second/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "custom-directives-second:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "custom-directives-second:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "custom-directives-second:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/custom-directives-second/tsconfig.app.json",
+              "apps/custom-directives-second/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/custom-directives-second/jest.config.js",
+            "tsConfig": "apps/custom-directives-second/tsconfig.spec.json",
+            "setupFile": "apps/custom-directives-second/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "custom-directives-second-e2e": {
+      "root": "apps/custom-directives-second-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/custom-directives-second-e2e/cypress.json",
+            "tsConfig": "apps/custom-directives-second-e2e/tsconfig.e2e.json",
+            "devServerTarget": "custom-directives-second:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "custom-directives-second:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

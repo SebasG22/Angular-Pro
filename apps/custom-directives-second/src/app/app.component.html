@@ -1,0 +1,7 @@
+<ul>
+  <ng-template myFor [myForOf]="items" let-item let-i="index">
+    <li>
+      {{ i }} Member: {{ item.name | json }}
+    </li>
+  </ng-template>
+</ul>
