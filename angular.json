@@ -860,6 +860,128 @@
           }
         }
       }
+    },
+    "custom-pipe": {
+      "root": "apps/custom-pipe/",
+      "sourceRoot": "apps/custom-pipe/src",
+      "projectType": "application",
+      "prefix": "angpro",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/custom-pipe",
+            "index": "apps/custom-pipe/src/index.html",
+            "main": "apps/custom-pipe/src/main.ts",
+            "polyfills": "apps/custom-pipe/src/polyfills.ts",
+            "tsConfig": "apps/custom-pipe/tsconfig.app.json",
+            "assets": [
+              "apps/custom-pipe/src/favicon.ico",
+              "apps/custom-pipe/src/assets"
+            ],
+            "styles": [
+              "apps/custom-pipe/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/custom-pipe/src/environments/environment.ts",
+                  "with": "apps/custom-pipe/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "custom-pipe:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "custom-pipe:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "custom-pipe:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/custom-pipe/tsconfig.app.json",
+              "apps/custom-pipe/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/custom-pipe/jest.config.js",
+            "tsConfig": "apps/custom-pipe/tsconfig.spec.json",
+            "setupFile": "apps/custom-pipe/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "custom-pipe-e2e": {
+      "root": "apps/custom-pipe-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/custom-pipe-e2e/protractor.conf.js",
+            "devServerTarget": "custom-pipe:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "custom-pipe:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/custom-pipe-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -49,6 +49,12 @@
     },
     "custom-directives-second-e2e": {
       "tags": []
+    },
+    "custom-pipe": {
+      "tags": []
+    },
+    "custom-pipe-e2e": {
+      "tags": []
     }
   }
 }
