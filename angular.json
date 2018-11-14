@@ -982,6 +982,129 @@
           }
         }
       }
+    },
+    "fitness-app": {
+      "root": "apps/fitness-app/",
+      "sourceRoot": "apps/fitness-app/src",
+      "projectType": "application",
+      "prefix": "angpro",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/fitness-app",
+            "index": "apps/fitness-app/src/index.html",
+            "main": "apps/fitness-app/src/main.ts",
+            "polyfills": "apps/fitness-app/src/polyfills.ts",
+            "tsConfig": "apps/fitness-app/tsconfig.app.json",
+            "assets": [
+              "apps/fitness-app/src/favicon.ico",
+              "apps/fitness-app/src/assets"
+            ],
+            "styles": [
+              "apps/fitness-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/fitness-app/src/environments/environment.ts",
+                  "with": "apps/fitness-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fitness-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fitness-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fitness-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/fitness-app/tsconfig.app.json",
+              "apps/fitness-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/fitness-app/jest.config.js",
+            "tsConfig": "apps/fitness-app/tsconfig.spec.json",
+            "setupFile": "apps/fitness-app/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "fitness-app-e2e": {
+      "root": "apps/fitness-app-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/fitness-app-e2e/cypress.json",
+            "tsConfig": "apps/fitness-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "fitness-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "fitness-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

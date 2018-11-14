@@ -55,6 +55,12 @@
     },
     "custom-pipe-e2e": {
       "tags": []
+    },
+    "fitness-app": {
+      "tags": []
+    },
+    "fitness-app-e2e": {
+      "tags": []
     }
   }
 }
