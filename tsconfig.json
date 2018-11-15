@@ -16,7 +16,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@fitness-app/src/*": ["fitnest-app/src/*"] 
+      "@fitnessapp/src/*": ["apps/fitness-app/src/app/*"],
+      "@fitnessapp/src/auth/*": ["apps/fitness-app/src/app/auth/*"]  
     }
   },
   "exclude": [

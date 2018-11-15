@@ -1,15 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CONTAINERS } from './containers';
-import { RegisterRoutingModule } from './register.router';
+import { NgModule } from '@angular/core';
+
+import { RegisterRoutingModule } from '@fitnessapp/src/auth/register/register.router';
+import { SharedModule } from '@fitnessapp/src/auth/shared/shared.module';
+import { RegisterContainerComponent } from '@fitnessapp/src/auth/register/containers';
 
 @NgModule({
     declarations: [
-        CONTAINERS
+        RegisterContainerComponent
     ],
     imports: [ 
         CommonModule,
-        RegisterRoutingModule 
+        RegisterRoutingModule,
+        SharedModule
     ],
     exports: [],
     providers: [],

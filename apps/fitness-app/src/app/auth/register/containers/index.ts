@@ -1,5 +1,1 @@
-import { RegisterContainerComponent } from "./register-container/register-container.component";
-
-export const CONTAINERS = [
-    RegisterContainerComponent
-];
+export * from './register-container/register-container.component';

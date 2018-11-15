@@ -1,15 +1,18 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CONTAINERS } from './containers';
 import { LoginRoutingModule } from './login.router';
+import { NgModule } from '@angular/core';
+
+import { LoginContainerComponent } from '@fitnessapp/src/auth/login/containers';
+import { SharedModule } from '@fitnessapp/src/auth/shared/shared.module';
 
 @NgModule({
     declarations: [
-        CONTAINERS
+        LoginContainerComponent
     ],
     imports: [ 
         CommonModule,
-        LoginRoutingModule
+        LoginRoutingModule,
+        SharedModule
      ],
     providers: [],
 })

@@ -1,10 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { RegisterContainerComponent } from './containers/register-container/register-container.component';
+
+import { RegisterContainerComponent } from './containers';
 
 const routes: Routes = [
-    { path: 'register', component: RegisterContainerComponent }
+    { path: '', component: RegisterContainerComponent }
 ];
 
 @NgModule({
