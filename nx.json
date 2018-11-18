@@ -61,6 +61,12 @@
     },
     "fitness-app-e2e": {
       "tags": []
+    },
+    "angular-zone": {
+      "tags": []
+    },
+    "angular-zone-e2e": {
+      "tags": []
     }
   }
 }
