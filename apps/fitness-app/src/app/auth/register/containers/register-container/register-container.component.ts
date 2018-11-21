@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'angpro-register-container',
@@ -8,9 +10,21 @@ import { FormGroup } from '@angular/forms';
 })
 export class RegisterContainerComponent {
 
-  constructor() { }
+  public error: string;
 
-  public registerUser(event: FormGroup) {
-    console.log(event.value);
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  public async registerUser(event: FormGroup) {
+    const { email, password } = event.value;
+    try {
+      await this.authService.createUser(email, password);
+      this.router.navigate(['/']);
+    }
+    catch (e) {
+      this.error = e.message;
+    }
   }
 }

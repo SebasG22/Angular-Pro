@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AuthFormComponent } from '@fitnessapp/src/auth/shared/components';
+import { AuthFormComponent } from './components';
 import { AuthService } from './services/auth/auth.service';
 
 

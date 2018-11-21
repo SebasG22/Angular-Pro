@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { AuthService } from '../../../shared/services';
 
 @Component({
   selector: 'angpro-login-container',
@@ -8,9 +11,21 @@ import { FormGroup } from '@angular/forms';
 })
 export class LoginContainerComponent {
 
-  constructor() { }
+  public error: string;
 
-  public loginUser(event: FormGroup) {
-    console.log(event.value);
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  public async loginUser(event: FormGroup) {
+    const { email, password } = event.value;
+    try {
+      await this.authService.createUser(email, password);
+      this.router.navigate(['']);
+    }
+    catch (e) {
+      this.error = e.message;
+    }
   }
 }
