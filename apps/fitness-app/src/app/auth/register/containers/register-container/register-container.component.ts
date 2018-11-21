@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'angpro-register-container',
   templateUrl: './register-container.component.html',
   styleUrls: ['./register-container.component.scss']
 })
-export class RegisterContainerComponent implements OnInit {
+export class RegisterContainerComponent {
 
   constructor() { }
 
-  ngOnInit() {
+  public registerUser(event: FormGroup) {
+    console.log(event.value);
   }
-
 }

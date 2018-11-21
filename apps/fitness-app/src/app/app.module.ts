@@ -13,7 +13,7 @@ import { AuthRoutingModule } from './auth/auth.router';
   ],
   imports: [
     AuthRoutingModule,
-    BrowserModule, 
+    BrowserModule,
     NxModule.forRoot(),
     RouterModule.forRoot([]),
   ],
@@ -22,4 +22,4 @@ import { AuthRoutingModule } from './auth/auth.router';
     AppComponent
   ]
 })
-export class AppModule {}
+export class AppModule { }

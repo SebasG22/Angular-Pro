@@ -9,9 +9,14 @@ import { SharedModule } from './shared/shared.module';
 import { environment } from '../../environments/environment';
 
 const routes: Routes = [
-    { path: '', pathMatch: 'full', redirectTo: 'login' },
-    { path: 'login', loadChildren: './login/login.module#LoginModule' },
-    { path: 'register', loadChildren: './register/register.module#RegisterModule' }
+    {
+        path: 'auth',
+        children: [
+            { path: '', pathMatch: 'full', redirectTo: 'login' },
+            { path: 'login', loadChildren: './login/login.module#LoginModule' },
+            { path: 'register', loadChildren: './register/register.module#RegisterModule' }
+        ]
+    }
 ];
 
 @NgModule({

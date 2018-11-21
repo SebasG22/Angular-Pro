@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'angpro-login-container',
   templateUrl: './login-container.component.html',
   styleUrls: ['./login-container.component.scss']
 })
-export class LoginContainerComponent implements OnInit {
+export class LoginContainerComponent {
 
   constructor() { }
 
-  ngOnInit() {
+  public loginUser(event: FormGroup) {
+    console.log(event.value);
   }
-
 }
