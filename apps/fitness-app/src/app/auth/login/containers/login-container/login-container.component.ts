@@ -21,7 +21,7 @@ export class LoginContainerComponent {
   public async loginUser(event: FormGroup) {
     const { email, password } = event.value;
     try {
-      await this.authService.createUser(email, password);
+      await this.authService.loginUser(email, password);
       this.router.navigate(['']);
     }
     catch (e) {
