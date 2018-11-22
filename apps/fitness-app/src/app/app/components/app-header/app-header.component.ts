@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
-import { IUser } from '../../auth/shared/models/index';
+import { IUser } from '../../../auth/shared/models/index';
 
 @Component({
   selector: 'angpro-app-header',
