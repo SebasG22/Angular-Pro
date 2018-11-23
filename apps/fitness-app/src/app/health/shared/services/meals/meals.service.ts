@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { Store } from '../../../../../store';
 
@@ -19,6 +19,7 @@ export class MealsService {
 
     public meals$: Observable<IMeal[]> = this.db.collection<IMeal>(`meals`).doc<[]>(`${this.uid}`).valueChanges()
     .pipe(
+        map((next) =>  (next) ? next : []),
         tap((next) => this.store.set('meals',next))
     );
 
