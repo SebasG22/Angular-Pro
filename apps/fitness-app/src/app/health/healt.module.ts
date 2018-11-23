@@ -2,6 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
+// shared modules
+import { SharedModule } from './shared/shared.module';
+
+
+//guards
 import { AuthGuard } from '../auth/shared/guards/auth.guard';
 
 const routes: Routes = [
@@ -12,8 +17,8 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        CommonModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        SharedModule.forRoot()
     ],
     exports: [
         RouterModule
