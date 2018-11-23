@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { NxModule } from '@nrwl/nx';
 
@@ -11,6 +11,9 @@ import { AppNavComponent } from './components/app-nav/app-nav.component';
 import { Store } from '../../store';
 import { HealthRoutingModule } from '../health/healt.module';
 
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'schedule' }
+]
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,7 @@ import { HealthRoutingModule } from '../health/healt.module';
     HealthRoutingModule,
     BrowserModule,
     NxModule.forRoot(),
-    RouterModule.forRoot([]),
+    RouterModule.forRoot(routes),
   ],
   providers: [
     Store
