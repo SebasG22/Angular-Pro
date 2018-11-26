@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { IMeal } from '../../../shared/models/index';
 @Component({
   selector: 'angpro-app-meal',
   templateUrl: './meal.component.html',
@@ -10,6 +11,10 @@ export class MealComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addMeal(event: IMeal){
+      console.log(event);
   }
 
 }
