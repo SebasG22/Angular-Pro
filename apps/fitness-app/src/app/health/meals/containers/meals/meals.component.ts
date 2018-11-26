@@ -6,6 +6,7 @@ import { MealsService } from '../../../shared/services/index';
 import { IMeal } from '@fitnessapp/src/health/shared/models';
 import { takeUntil, tap } from 'rxjs/operators';
 import { Store } from '../../../../../store';
+import { IMeal } from '../../../shared/models';
 
 @Component({
   selector: 'angpro-app-meals',
@@ -29,6 +30,10 @@ export class MealsComponent implements OnInit, OnDestroy {
     this.mealsService.meals$.pipe(
       takeUntil(this.destroy$)
     ).subscribe();
+  }
+
+  public removeMeal(event: IMeal){
+    this.mealsService.removeMeal(event.uid);
   }
 
   ngOnDestroy() {

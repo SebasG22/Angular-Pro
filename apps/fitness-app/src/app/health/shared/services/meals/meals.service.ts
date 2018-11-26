@@ -30,7 +30,14 @@ export class MealsService {
 
     public addMeal(meal: IMeal){
         const uid = this.db.createId();
-        return this.db.collection(`health`).doc(`meals`).collection(`${this.uid}`).add(meal);
+        return this.db.collection(`health`).doc(`meals`).collection(`${this.uid}`).doc(uid).set({
+            uid,
+            ...meal
+        });
+    }
+
+    public removeMeal(uid:string){
+        return this.db.collection(`health`).doc(`meals`).collection(`${this.uid}`).doc(uid).delete();
     }
 
     

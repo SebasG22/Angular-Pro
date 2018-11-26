@@ -1,18 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'angpro-list-item',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss']
 })
-export class ListItemComponent implements OnInit {
-  
+export class ListItemComponent {
+
   @Input() public item: any;
+
+  @Output() public remove: EventEmitter<any>= new EventEmitter<any>();
+
+  public toggled = false;
 
   constructor() { }
   
-  
-  ngOnInit() {
+  public getRoute(item: any){
+    return [`../meals`,item.uid]
   }
+
+  
+  public toggle(){
+    this.toggled = !this.toggled;
+  }
+
+  public removeItem(){
+    this.remove.emit(this.item);
+  }
+
 
 }
