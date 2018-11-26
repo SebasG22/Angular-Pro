@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { IMeal } from '../../../shared/models/index';
+
+import { MealsService } from '../../../shared/services/index';
+
+
 @Component({
   selector: 'angpro-app-meal',
   templateUrl: './meal.component.html',
@@ -8,13 +13,21 @@ import { IMeal } from '../../../shared/models/index';
 })
 export class MealComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private mealsService: MealsService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
-  addMeal(event: IMeal){
-      console.log(event);
+  public async addMeal(event: IMeal){
+    console.log('hey');
+      await this.mealsService.addMeal(event);
+      this.backToMeals();
   }
 
+  public backToMeals(){
+    this.router.navigate(['meals']);
+  }
 }

@@ -17,14 +17,21 @@ export class MealsService {
         private authService: AuthService
     ){}
 
-    public meals$: Observable<IMeal[]> = this.db.collection<IMeal>(`meals`).doc<[]>(`${this.uid}`).valueChanges()
+    public meals$: Observable<any[]> = this.db.collection(`health`).doc(`meals`).collection<IMeal[]>(`${this.uid}`).valueChanges()
     .pipe(
         map((next) =>  (next) ? next : []),
         tap((next) => this.store.set('meals',next))
     );
 
 
-    get uid(){
+    public get uid(){
         return this.authService.user.uid;
     }
+
+    public addMeal(meal: IMeal){
+        const uid = this.db.createId();
+        return this.db.collection(`health`).doc(`meals`).collection(`${this.uid}`).add(meal);
+    }
+
+    
 }

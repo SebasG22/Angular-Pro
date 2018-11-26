@@ -5,17 +5,20 @@ import { MealsService } from './services/meals/meals.service';
 
 //third-party modules
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
     declarations: [
-
+        ListItemComponent
     ],
     imports: [ 
         AngularFirestoreModule,
         CommonModule,
         RouterModule
      ],
-    exports: [],
+    exports: [
+        ListItemComponent
+    ],
 })
 export class SharedModule {
     static forRoot(): ModuleWithProviders {
