@@ -5,8 +5,8 @@ import { IMeal } from '../../../shared/models';
 @Component({
   selector: 'angpro-meal-form',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './meal-form-component.component.html',
-  styleUrls: ['./meal-form-component.component.scss']
+  templateUrl: './meal-form.component.html',
+  styleUrls: ['./meal-form.component.scss']
 })
 export class MealFormComponent implements OnChanges {
 

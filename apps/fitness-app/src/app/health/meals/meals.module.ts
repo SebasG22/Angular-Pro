@@ -6,7 +6,7 @@ import { MealsRoutingModule } from './meals.router';
 
 import { SharedModule } from '../shared/shared.module';
 import { MealComponent } from './containers/meal/meal.component';
-import { MealFormComponent } from './components/meal-form-component/meal-form-component.component';
+import { MealFormComponent } from './components/meal-form-component/meal-form.component';
 
 @NgModule({
     declarations: [

@@ -3,5 +3,12 @@ export interface IMeal {
     name: string;
     ingredients: string[];
     timestamp: number;
-    $exists: () => boolean
+}
+
+export interface IWorkout{
+    uid: string;
+    name:string;
+    type:string;
+    strength: any,
+    endurance: any
 }

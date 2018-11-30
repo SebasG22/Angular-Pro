@@ -58,5 +58,4 @@ export class MealsService {
         return this.db.collection(`health`).doc(`meals`).collection(`${this.uid}`).doc(uid).delete();
     }
 
-
 }
