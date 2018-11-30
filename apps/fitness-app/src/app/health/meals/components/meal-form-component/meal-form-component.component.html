@@ -28,8 +28,11 @@
     </div>
     <div class="meal-form__submit">
       <div>
-        <button type="button" class="button" (click)="createMeal()">
+        <button type="button" class="button" *ngIf="!exists" (click)="createMeal()">
           Create meal
+        </button>
+        <button type="button" class="button" *ngIf="exists" (click)="updateMeal()">
+          Save
         </button>
         <a class="button button--cancel" [routerLink]="['../']">
           Cancel
@@ -38,7 +41,7 @@
       <div class="meal-form__delete" *ngIf="exists">
         <div *ngIf="toggled">
           <p> Delete item ? </p>
-          <button class="confirm" type="button" (click)="removeItem()">
+          <button class="confirm" type="button" (click)="removeMeal()">
             Yes
           </button>
           <button class="cancel" type="button" (click)="toggle()">

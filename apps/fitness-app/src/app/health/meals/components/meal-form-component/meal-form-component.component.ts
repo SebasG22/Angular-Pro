@@ -35,8 +35,24 @@ export class MealFormComponent implements OnChanges {
     if (this.meal && this.meal.name) {
       //existing
       this.exists = true;
-      const value = this.meal;
+      const value : IMeal = this.meal;
       this.form.patchValue(value);
+
+      this.emptyIngredients();
+
+      if(value.ingredients){
+        for(const item of value.ingredients){
+          this.ingredients.push(
+            new FormControl(item)
+          );
+        }
+      }
+    }
+  }
+
+  public emptyIngredients(){
+    while(this.ingredients.controls.length){
+      this.ingredients.removeAt(0);
     }
   }
 
@@ -44,7 +60,16 @@ export class MealFormComponent implements OnChanges {
     if (this.form.valid) {
       this.create.emit(this.form.value);
     }
-    console.log(this.form.value);
+  }
+
+  public updateMeal() {
+    if (this.form.valid) {
+      this.update.emit(this.form.value);
+    }
+  }
+
+  public removeMeal() {
+      this.remove.emit(this.form.value);
   }
 
   public addIngredient() {

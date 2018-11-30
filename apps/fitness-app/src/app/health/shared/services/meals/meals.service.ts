@@ -47,6 +47,13 @@ export class MealsService {
         });
     }
 
+    public updateMeal(uid: string, meal: IMeal) {
+        return this.db.collection(`health`).doc(`meals`).collection(`${this.uid}`).doc(uid).update({
+            uid,
+            ...meal
+        });
+    }
+
     public removeMeal(uid: string) {
         return this.db.collection(`health`).doc(`meals`).collection(`${this.uid}`).doc(uid).delete();
     }

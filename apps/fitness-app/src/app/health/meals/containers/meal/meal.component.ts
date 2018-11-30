@@ -42,12 +42,14 @@ export class MealComponent implements OnInit, OnDestroy {
     this.backToMeals();
   }
 
-  public updateMeal(event: IMeal) {
-
+  public async updateMeal(event: IMeal) {
+    await this.mealsService.updateMeal(this.route.snapshot.params.id, event);
+    this.backToMeals();
   }
 
-  public removeMeal(event: IMeal) {
-
+  public async removeMeal(event: IMeal) {
+    await this.mealsService.removeMeal(this.route.snapshot.params.id);
+    this.backToMeals();
   }
 
   public backToMeals() {
