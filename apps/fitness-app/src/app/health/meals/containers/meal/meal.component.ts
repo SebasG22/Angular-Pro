@@ -42,6 +42,14 @@ export class MealComponent implements OnInit, OnDestroy {
     this.backToMeals();
   }
 
+  public updateMeal(event: IMeal) {
+
+  }
+
+  public removeMeal(event: IMeal) {
+
+  }
+
   public backToMeals() {
     this.router.navigate(['meals']);
   }
