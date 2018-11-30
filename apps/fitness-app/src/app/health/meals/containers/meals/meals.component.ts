@@ -3,7 +3,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 
 import { MealsService } from '../../../shared/services/index';
-import { IMeal } from '@fitnessapp/src/health/shared/models';
 import { takeUntil, tap } from 'rxjs/operators';
 import { Store } from '../../../../../store';
 import { IMeal } from '../../../shared/models';
@@ -18,7 +17,7 @@ export class MealsComponent implements OnInit, OnDestroy {
 
   public destroy$: Subject<boolean> = new Subject<boolean>();
 
-  public meals$ : Observable<IMeal[]>;
+  public meals$: Observable<IMeal[]>;
 
   constructor(
     private store: Store,
@@ -32,7 +31,7 @@ export class MealsComponent implements OnInit, OnDestroy {
     ).subscribe();
   }
 
-  public removeMeal(event: IMeal){
+  public removeMeal(event: IMeal) {
     this.mealsService.removeMeal(event.uid);
   }
 
