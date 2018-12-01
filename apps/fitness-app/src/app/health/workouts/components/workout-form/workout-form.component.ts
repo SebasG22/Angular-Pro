@@ -27,7 +27,16 @@ export class WorkoutFormComponent implements OnChanges {
 
   public form = this.fb.group({
     name: ['', Validators.required],
-    type: 'strength'
+    type: 'strength',
+    strength: this.fb.group({
+      reps: 0,
+      sets: 0,
+      weight: 0
+    }),
+    endurance: this.fb.group({
+      distance: 0,
+      duration: 0
+    })
   });
 
   ngOnChanges(changes: SimpleChanges) {
@@ -37,6 +46,10 @@ export class WorkoutFormComponent implements OnChanges {
       const value: IWorkout = this.workout;
       this.form.patchValue(value);
     }
+  }
+
+  get placeholder() {
+    return `e.g. ${this.form.get('type').value === 'strength' ? 'Benchpress' : 'Treadmill'}`
   }
 
   public createWorkout() {
