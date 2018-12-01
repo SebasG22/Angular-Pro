@@ -7,7 +7,7 @@ import { IWorkout } from '../../../shared/models';
   templateUrl: './workout-form.component.html',
   styleUrls: ['./workout-form.component.scss']
 })
-export class WorkoutFormComponent implements OnChanges{
+export class WorkoutFormComponent implements OnChanges {
 
   @Input() public workout: IWorkout;
 
@@ -27,6 +27,7 @@ export class WorkoutFormComponent implements OnChanges{
 
   public form = this.fb.group({
     name: ['', Validators.required],
+    type: 'strength'
   });
 
   ngOnChanges(changes: SimpleChanges) {
@@ -34,9 +35,9 @@ export class WorkoutFormComponent implements OnChanges{
       //existing
       this.exists = true;
       const value: IWorkout = this.workout;
-      this.form.patchValue(value); 
+      this.form.patchValue(value);
+    }
   }
-}
 
   public createWorkout() {
     if (this.form.valid) {
