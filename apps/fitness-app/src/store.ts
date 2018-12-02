@@ -5,12 +5,14 @@ import { IMeal, IWorkout } from './app/health/shared/models';
 
 export interface State {
     [key: string]: any,
+    date: Date,
     user: IUser
     meals: IMeal[],
     workouts: IWorkout[]
 }
 
 const state: State = {
+    date: undefined,
     user: undefined,
     meals: undefined,
     workouts: undefined
