@@ -10,22 +10,22 @@ export class ListItemComponent {
 
   @Input() public item: any;
 
-  @Output() public remove: EventEmitter<any>= new EventEmitter<any>();
+  @Output() public remove: EventEmitter<any> = new EventEmitter<any>();
 
   public toggled = false;
 
   constructor() { }
-  
-  public getRoute(item: any){
-    return [`../meals`,item.uid]
+
+  public getRoute(item: any) {
+    return [`../${item.ingredients ? 'meals' : 'workouts'}`, item.uid]
   }
 
-  
-  public toggle(){
+
+  public toggle() {
     this.toggled = !this.toggled;
   }
 
-  public removeItem(){
+  public removeItem() {
     this.remove.emit(this.item);
   }
 

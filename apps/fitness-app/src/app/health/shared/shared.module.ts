@@ -8,17 +8,25 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { WorkoutsService } from './services/workouts/workouts.service';
 
+//pipes
+import { JoinPipe } from './pipes/join.pipe';
+import { WorkoutPipe } from './pipes/workout.pipe';
+
 @NgModule({
     declarations: [
-        ListItemComponent
+        ListItemComponent,
+        JoinPipe,
+        WorkoutPipe
     ],
-    imports: [ 
+    imports: [
         AngularFirestoreModule,
         CommonModule,
         RouterModule
-     ],
+    ],
     exports: [
-        ListItemComponent
+        ListItemComponent,
+        JoinPipe,
+        WorkoutPipe
     ],
 })
 export class SharedModule {
