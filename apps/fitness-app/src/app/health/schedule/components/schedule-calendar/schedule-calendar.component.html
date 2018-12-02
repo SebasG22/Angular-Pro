@@ -1,4 +1,6 @@
 <div class="calendar">
     <angpro-schedule-controls [selected]="selectedDay" (move)="onChange($event)">
     </angpro-schedule-controls>
+    <angpro-schedule-days [selected]="selectedDayIndex" (select)="selectDay($event)">
+    </angpro-schedule-days>
 </div>
