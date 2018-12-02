@@ -1,4 +1,4 @@
 <div class="schedule">
 
-    <angpro-schedule-calendar [date]="date$ | async"></angpro-schedule-calendar>
+    <angpro-schedule-calendar [date]="date$ | async" (change)="changeDate($event)"></angpro-schedule-calendar>
 </div>

@@ -12,8 +12,11 @@ export class ScheduleService {
         tap((next) => this.store.set('date', next))
     );
 
-    constructor(
-        private store: Store,
+    updateDate(date: Date) {
+        this.date$.next(date);
+    }
 
+    constructor(
+        private store: Store
     ) { }
 }

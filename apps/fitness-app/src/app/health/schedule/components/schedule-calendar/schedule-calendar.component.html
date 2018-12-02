@@ -1,3 +1,4 @@
 <div class="calendar">
-    {{ date | json }}
+    <angpro-schedule-controls [selected]="selectedDay" (move)="onChange($event)">
+    </angpro-schedule-controls>
 </div>

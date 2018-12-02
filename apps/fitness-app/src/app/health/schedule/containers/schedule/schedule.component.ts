@@ -26,6 +26,11 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.scheduleService.schedule$.pipe(takeUntil(this.destroy$)).subscribe();
   }
 
+  changeDate(date: Date) {
+    console.log(date);
+    this.scheduleService.updateDate(date);
+  }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     // Now let's also unsubscribe from the subject itself:
